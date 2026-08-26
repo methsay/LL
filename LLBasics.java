@@ -19,14 +19,9 @@ class LLBasics{
     static void displayRecurively(Node head)
     {
         Node temp = head;
-        if(temp == null){
-            return;
-        }
-        while(temp != null)
-        {
+        if(temp == null) return;
             System.out.print(temp.data+" ");
             displayRecurively(head.next);
-        }
     }
     public static void main(String[] args) {
         Node head = new Node(1);
@@ -37,5 +32,6 @@ class LLBasics{
         b.next = c;
         c.next = d;
         printLinkedList(head);
+        displayRecurively(head);
     }
 }

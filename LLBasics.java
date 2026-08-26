@@ -23,6 +23,17 @@ class LLBasics{
             System.out.print(temp.data+" ");
             displayRecurively(head.next);
     }
+    static void length(Node head)
+    {
+        Node temp = head;
+        int count = 0;
+        while(temp != null)
+        {
+            count++;
+            temp = temp.next;
+        }
+        System.out.println("The Length of the linked List is = " + count);
+    }
     public static void main(String[] args) {
         Node head = new Node(1);
         Node b = new Node(2);

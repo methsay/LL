@@ -61,6 +61,23 @@ public class Implementation {
                 }
                 return temp.data;
             }
+            void deleteAtIndex(int pos){
+                Node temp = head;
+                if(pos < 0 || pos > size()){
+                    System.out.println("Wrong Input"); return ;
+                }
+                if(pos == 0){
+                    head = head.next;
+                }
+                if(pos == size()){
+                    tail = temp;
+                }
+                for(int i = 0; i < pos; i++)
+                {
+                    temp = temp.next;
+                }
+                temp.next = temp.next.next;
+            }
 
             void display() {
                 Node temp = head;

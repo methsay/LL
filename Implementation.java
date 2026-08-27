@@ -51,6 +51,16 @@ public class Implementation {
                 naya.next = temp.next;
                 temp.next = naya;
             }
+            int getElementByPos(int pos){
+                if(pos < 0 || pos > size()){
+                    System.out.println("Wrong Input"); return -1;
+                }
+                Node temp = head;
+                for(int i = 0; i < pos; i++){
+                    temp = temp.next;
+                }
+                return temp.data;
+            }
 
             void display() {
                 Node temp = head;
@@ -80,5 +90,6 @@ public class Implementation {
         System.out.println();
         ll.display();
         System.out.println("Head = "+ll.head.data);
+        System.out.println("the element = "+ll.getElementByPos(1));
     }
 }

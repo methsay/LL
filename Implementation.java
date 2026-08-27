@@ -68,9 +68,11 @@ public class Implementation {
                 }
                 if(pos == 0){
                     head = head.next;
+                    return;
                 }
                 if(pos == size()){
                     tail = temp;
+                    return;
                 }
                 for(int i = 0; i < pos; i++)
                 {

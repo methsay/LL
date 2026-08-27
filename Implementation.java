@@ -30,6 +30,15 @@ public class Implementation {
                     temp = temp.next;
                 }
             }
+            int size(){
+                int count = 0;
+                Node temp = head;
+                while(temp != null){
+                    count++;
+                    temp = temp.next;
+                }
+                return count;
+            }
         }
 
     public static void main(String[] args) {
@@ -37,5 +46,6 @@ public class Implementation {
         ll.insertAtEnd(7);
         ll.insertAtEnd(8);
         ll.display();
+        ll.size();
     }
 }

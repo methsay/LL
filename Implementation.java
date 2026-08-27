@@ -32,6 +32,25 @@ public class Implementation {
                 }
                 tail = temp;
             }
+            void insertAtAny(int pos,int val){
+                Node naya = new Node(val);
+                Node temp = head;
+                if(pos == size()){
+                    insertAtEnd(val); return;
+                }
+                if(pos==0){
+                    insertAtStart(val); return;
+                }
+                else if(pos < 0 || pos > size()){
+                    System.out.println("Wrong Input"); return;
+                }
+                for(int i = 1; i < pos - 1; i++)
+                {
+                    temp = temp.next;
+                }
+                naya.next = temp.next;
+                temp.next = naya;
+            }
 
             void display() {
                 Node temp = head;
@@ -57,5 +76,9 @@ public class Implementation {
         ll.insertAtEnd(8);
         ll.display();
         ll.size();
+        ll.insertAtAny(0, 3);
+        System.out.println();
+        ll.display();
+        System.out.println("Head = "+ll.head.data);
     }
 }

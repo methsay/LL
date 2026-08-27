@@ -12,6 +12,16 @@ public class Implementation {
         public static class linkedlist {
             Node head = null;
             Node tail = null;
+            void insertAtStart(int val){
+                Node temp = new Node(val);
+                if(head == null){
+                    head = tail = temp;
+                }
+                else{
+                    temp.next = head;
+                    head = temp;
+                }
+            }
 
             void insertAtEnd(int val) {
                 Node temp = new Node(val);

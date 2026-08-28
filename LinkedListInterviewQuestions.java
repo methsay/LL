@@ -10,7 +10,7 @@ class ListNode{
     }
 }
 
-public class DeleteNode{
+public class LinkedListInterviewQuestions{
     public static void main(String[] args) {
         //pass the node which you want to delete //leetcode237
     }

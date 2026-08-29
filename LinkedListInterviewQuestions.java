@@ -8,6 +8,18 @@ class ListNode{
         node.data = node.next.data;
         node.next = node.next.next;
     }
+    static ListNode nthNodeFromLast(ListNode head, int pos ){
+        ListNode fast = head;
+        ListNode slow = head;
+        for(int i = 1; i <= pos; i++){
+            fast = fast.next;
+        }
+        while(fast != null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
 }
 
 public class LinkedListInterviewQuestions{

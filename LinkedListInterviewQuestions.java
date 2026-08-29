@@ -1,3 +1,5 @@
+import java.util.List;
+
 class ListNode{
     int data;
     ListNode next;
@@ -32,7 +34,7 @@ class ListNode{
     static ListNode removeNthNode(ListNode head,int pos){
         ListNode fast = head;
         ListNode slow = head;
-        for(int i = 1; i <= pos; i++){
+        for(int i = 1; i <=pos; i++){
             fast = fast.next;
         }
         if(fast == null){
@@ -83,6 +85,22 @@ class ListNode{
         return temp1;
 
     }
+    static int middle(ListNode head){
+        int len = ListNode.lengthOfLL(head);
+        ListNode temp = head;
+        if(len % 2 == 0){
+            for(int i = 1; i < len/2; i++){
+                temp = temp.next;
+            }
+            return temp.data;
+        }
+        else{
+           for(int i = 1; i <= len/2; i++){
+                temp = temp.next;
+            }
+            return temp.data; 
+        }
+    }
 }
 
 public class LinkedListInterviewQuestions{
@@ -100,7 +118,7 @@ public class LinkedListInterviewQuestions{
         d.next = e;
         e.next = f;
         ListNode.display(a);
-        a = ListNode.removeNthNode(a, 2);
+        System.out.println("Middle element = "+ ListNode.middle(a));
         ListNode.display(a);
     }
 }

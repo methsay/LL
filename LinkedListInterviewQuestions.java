@@ -35,12 +35,53 @@ class ListNode{
         for(int i = 1; i <= pos; i++){
             fast = fast.next;
         }
+        if(fast == null){
+            head = head.next;
+            return head;
+        }
         while(fast.next != null){
             fast = fast.next;
             slow= slow.next;
         }
         slow.next = slow.next.next;
-        return slow;
+        return head;
+    }
+    static int lengthOfLL(ListNode head){
+        ListNode temp = head;
+        int len = 0;
+        while(temp != null){
+            len++;
+            temp = temp.next;
+        }
+        return len;
+    }
+    static ListNode intersection(ListNode head){
+        ListNode temp1 = head;
+        ListNode temp2 = head;
+        int increment = 0;
+        int len1 = ListNode.lengthOfLL(temp1);
+        int len2 = ListNode.lengthOfLL(temp2);
+        if(len1 < len2){
+            increment = len2-len1;
+            while(increment > 0){
+                temp2 = temp2.next;
+                increment--;
+            }
+
+        }
+        else{
+            increment = len1 - len2;
+            while (increment > 0) {
+                temp1 = temp1.next;
+                increment--;
+            }
+        }
+        while (temp1 != temp2){
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+        return temp1;
+
     }
 }
 
@@ -59,7 +100,7 @@ public class LinkedListInterviewQuestions{
         d.next = e;
         e.next = f;
         ListNode.display(a);
-        ListNode.removeNthNode(a, 2);
+        a = ListNode.removeNthNode(a, 2);
         ListNode.display(a);
     }
 }

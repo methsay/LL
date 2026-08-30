@@ -1,111 +1,157 @@
 import java.util.List;
 
-class ListNode{
+class ListNode {
     int data;
     ListNode next;
-    ListNode(int data){
+
+    ListNode(int data) {
         this.data = data;
     }
-    static void deleteNode(ListNode node){
+
+    static void deleteNode(ListNode node) {
         node.data = node.next.data;
         node.next = node.next.next;
     }
-    static void display(ListNode head)
-    {
+
+    static void display(ListNode head) {
         ListNode temp = head;
-        while(temp != null){
-            System.out.print(temp.data+" ");
+        while (temp != null) {
+            System.out.print(temp.data + " ");
             temp = temp.next;
         }
         System.out.println();
     }
-    static ListNode nthNodeFromLast(ListNode head, int pos ){
+
+    static ListNode nthNodeFromLast(ListNode head, int pos) {
         ListNode fast = head;
         ListNode slow = head;
-        for(int i = 1; i <= pos; i++){
+        for (int i = 1; i <= pos; i++) {
             fast = fast.next;
         }
-        while(fast != null){
+        while (fast != null) {
             fast = fast.next;
             slow = slow.next;
         }
         return slow;
     }
-    static ListNode removeNthNode(ListNode head,int pos){
+
+    static ListNode removeNthNode(ListNode head, int pos) {
         ListNode fast = head;
         ListNode slow = head;
-        for(int i = 1; i <=pos; i++){
+        for (int i = 1; i <= pos; i++) {
             fast = fast.next;
         }
-        if(fast == null){
+        if (fast == null) {
             head = head.next;
             return head;
         }
-        while(fast.next != null){
+        while (fast.next != null) {
             fast = fast.next;
-            slow= slow.next;
+            slow = slow.next;
         }
         slow.next = slow.next.next;
         return head;
     }
-    static int lengthOfLL(ListNode head){
+
+    static int lengthOfLL(ListNode head) {
         ListNode temp = head;
         int len = 0;
-        while(temp != null){
+        while (temp != null) {
             len++;
             temp = temp.next;
         }
         return len;
     }
-    static ListNode intersection(ListNode head){
+
+    static ListNode intersection(ListNode head) {
         ListNode temp1 = head;
         ListNode temp2 = head;
         int increment = 0;
         int len1 = ListNode.lengthOfLL(temp1);
         int len2 = ListNode.lengthOfLL(temp2);
-        if(len1 < len2){
-            increment = len2-len1;
-            while(increment > 0){
+        if (len1 < len2) {
+            increment = len2 - len1;
+            while (increment > 0) {
                 temp2 = temp2.next;
                 increment--;
             }
 
-        }
-        else{
+        } else {
             increment = len1 - len2;
             while (increment > 0) {
                 temp1 = temp1.next;
                 increment--;
             }
         }
-        while (temp1 != temp2){
+        while (temp1 != temp2) {
             temp1 = temp1.next;
             temp2 = temp2.next;
         }
         return temp1;
 
     }
-    static int middle(ListNode head){
+
+    static int middle(ListNode head) {
         int len = ListNode.lengthOfLL(head);
         ListNode temp = head;
-        if(len % 2 == 0){
-            for(int i = 1; i < len/2; i++){
+        if (len % 2 == 0) {
+            for (int i = 1; i < len / 2; i++) {
+                temp = temp.next;
+            }
+            return temp.data;
+        } else {
+            for (int i = 1; i <= len / 2; i++) {
                 temp = temp.next;
             }
             return temp.data;
         }
-        else{
-           for(int i = 1; i <= len/2; i++){
-                temp = temp.next;
+    }
+
+    static int middleElement(ListNode head) {
+        // fast and slow pointer approach
+        ListNode fast = head;
+        ListNode slow = head;
+       while(fast != null && fast.next != null){
+        slow = slow.next;
+        fast = fast.next.next;
+       }
+       return slow.data;
+    }
+    static int deleteMiddleElement(ListNode head){
+        ListNode fast = head;
+        ListNode slow = head;
+        int len = ListNode.lengthOfLL(head);
+        if(len % 2 == 0){
+            while(fast.next.next != null){
+                slow = slow.next;
+                fast = fast.next.next;
             }
-            return temp.data; 
+            slow.next = slow.next.next;
+            return slow.data;
         }
+        else{
+            while(fast.next.next.next != null){
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            slow.next = slow.next.next;
+            return slow.data;
+        }
+    }
+    static boolean hasCycle(ListNode head){
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if(slow == fast) return true;
+        else  return false;
     }
 }
 
-public class LinkedListInterviewQuestions{
+public class LinkedListInterviewQuestions {
     public static void main(String[] args) {
-        //pass the node which you want to delete //leetcode237
         ListNode a = new ListNode(100);
         ListNode b = new ListNode(13);
         ListNode c = new ListNode(4);
@@ -118,7 +164,7 @@ public class LinkedListInterviewQuestions{
         d.next = e;
         e.next = f;
         ListNode.display(a);
-        System.out.println("Middle element = "+ ListNode.middle(a));
+       System.out.println(ListNode.deleteMiddleElement(a));
         ListNode.display(a);
     }
 }

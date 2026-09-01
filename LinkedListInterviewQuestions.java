@@ -220,25 +220,35 @@ class ListNode {
                     oddTail.next = temp;
                     oddTail = temp;
                 }
-            }
-            else{
-                if(evenHead == null){
+            } else {
+                if (evenHead == null) {
                     evenHead = temp;
                     evenTail = temp;
-                }
-                else{
+                } else {
                     evenTail.next = temp;
                     evenTail = temp;
                 }
             }
-            if(oddHead == null){
+            if (oddHead == null) {
                 return evenHead;
             }
-            if(evenTail != null){
+            if (evenTail != null) {
                 evenTail.next = null;
             }
         }
         return oddHead;
+    }
+
+    static ListNode removeDuplicatesFunc(ListNode head) {
+        ListNode temp = head;
+        while (temp != null && temp.next != null) {
+            if (temp.data == temp.next.data) {
+                temp.next = temp.next.next;
+            } else {
+                temp = temp.next;
+            }
+        }
+        return head;
     }
 }
 

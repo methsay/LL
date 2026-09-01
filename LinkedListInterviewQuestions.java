@@ -148,6 +148,33 @@ class ListNode {
         if(slow == fast) return true;
         else  return false;
     }
+    static ListNode merge(ListNode List1 , ListNode List2){
+        ListNode temp1 = List1;
+        ListNode temp2 = List2;
+        ListNode head = new ListNode(100);
+        ListNode temp = head;
+        while(List1 != null || List2 != null){
+            if(temp1.data < temp2.data){
+                ListNode a = new ListNode(temp1.data);
+                temp.next = a;
+                temp = a;
+                temp1 = temp1.next; 
+            }
+            else{
+                ListNode a = new ListNode(temp2.data);
+                temp.next = a;
+                temp = a;
+                temp2 = temp2.next;
+            }
+            if(temp1 != null){
+                temp.next = temp1;
+            }
+            else{
+                temp.next = temp2;
+            }
+        }
+        return head.next;
+    }
 }
 
 public class LinkedListInterviewQuestions {

@@ -166,11 +166,36 @@ class ListNode {
                 temp = a;
                 temp2 = temp2.next;
             }
-            if(temp1 != null){
+            if(temp1 == null){
+                temp.next = temp2;
+            }
+            else{
                 temp.next = temp1;
+            }
+        }
+        return head.next;
+    }
+    static ListNode mergeWithoutExtraSpace(ListNode List1 , ListNode List2){
+        ListNode temp1 = List1;
+        ListNode temp2 = List2;
+        ListNode head = new ListNode(100);
+        ListNode temp = head;
+        while(temp1 != null || temp2 != null){
+            if(temp1.data < temp2.data){
+                temp.next = temp1;
+                temp = temp1;
+                temp1 = temp1.next;
             }
             else{
                 temp.next = temp2;
+                temp = temp2;
+                temp2 = temp2.next;
+            }
+            if(temp1 == null){
+                temp = temp2.next;
+            }
+            else{
+                temp = temp1.next;
             }
         }
         return head.next;

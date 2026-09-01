@@ -111,94 +111,134 @@ class ListNode {
         // fast and slow pointer approach
         ListNode fast = head;
         ListNode slow = head;
-       while(fast != null && fast.next != null){
-        slow = slow.next;
-        fast = fast.next.next;
-       }
-       return slow.data;
-    }
-    static int deleteMiddleElement(ListNode head){
-        ListNode fast = head;
-        ListNode slow = head;
-        int len = ListNode.lengthOfLL(head);
-        if(len % 2 == 0){
-            while(fast.next.next != null){
-                slow = slow.next;
-                fast = fast.next.next;
-            }
-            slow.next = slow.next.next;
-            return slow.data;
-        }
-        else{
-            while(fast.next.next.next != null){
-                slow = slow.next;
-                fast = fast.next.next;
-            }
-            slow.next = slow.next.next;
-            return slow.data;
-        }
-    }
-    static boolean hasCycle(ListNode head){
-        ListNode fast = head;
-        ListNode slow = head;
-        while(fast != null && fast.next != null){
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        if(slow == fast) return true;
-        else  return false;
+        return slow.data;
     }
-    static ListNode merge(ListNode List1 , ListNode List2){
+
+    static int deleteMiddleElement(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        int len = ListNode.lengthOfLL(head);
+        if (len % 2 == 0) {
+            while (fast.next.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            slow.next = slow.next.next;
+            return slow.data;
+        } else {
+            while (fast.next.next.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            slow.next = slow.next.next;
+            return slow.data;
+        }
+    }
+
+    static boolean hasCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if (slow == fast)
+            return true;
+        else
+            return false;
+    }
+
+    static ListNode merge(ListNode List1, ListNode List2) {
         ListNode temp1 = List1;
         ListNode temp2 = List2;
         ListNode head = new ListNode(100);
         ListNode temp = head;
-        while(List1 != null || List2 != null){
-            if(temp1.data < temp2.data){
+        while (List1 != null || List2 != null) {
+            if (temp1.data < temp2.data) {
                 ListNode a = new ListNode(temp1.data);
                 temp.next = a;
                 temp = a;
-                temp1 = temp1.next; 
-            }
-            else{
+                temp1 = temp1.next;
+            } else {
                 ListNode a = new ListNode(temp2.data);
                 temp.next = a;
                 temp = a;
                 temp2 = temp2.next;
             }
-            if(temp1 == null){
+            if (temp1 == null) {
                 temp.next = temp2;
-            }
-            else{
+            } else {
                 temp.next = temp1;
             }
         }
         return head.next;
     }
-    static ListNode mergeWithoutExtraSpace(ListNode List1 , ListNode List2){
+
+    static ListNode mergeWithoutExtraSpace(ListNode List1, ListNode List2) {
         ListNode temp1 = List1;
         ListNode temp2 = List2;
         ListNode head = new ListNode(100);
         ListNode temp = head;
-        while(temp1 != null || temp2 != null){
-            if(temp1.data < temp2.data){
+        while (temp1 != null || temp2 != null) {
+            if (temp1.data < temp2.data) {
                 temp.next = temp1;
                 temp = temp1;
                 temp1 = temp1.next;
-            }
-            else{
+            } else {
                 temp.next = temp2;
                 temp = temp2;
                 temp2 = temp2.next;
             }
-            if(temp1 == null){
+            if (temp1 == null) {
                 temp = temp2.next;
-            }
-            else{
+            } else {
                 temp = temp1.next;
             }
         }
         return head.next;
+    }
+
+    static ListNode oddEven(ListNode head) {
+        ListNode oddHead = null;
+        ListNode oddTail = null;
+
+        ListNode evenHead = null;
+        ListNode evenTail = null;
+
+        ListNode temp = head;
+
+        while (temp != null) {
+            if (temp.data % 2 == 0) {
+                if (oddHead == null) {
+                    oddHead = temp;
+                    oddTail = temp;
+                } else {
+                    oddTail.next = temp;
+                    oddTail = temp;
+                }
+            }
+            else{
+                if(evenHead == null){
+                    evenHead = temp;
+                    evenTail = temp;
+                }
+                else{
+                    evenTail.next = temp;
+                    evenTail = temp;
+                }
+            }
+            if(oddHead == null){
+                return evenHead;
+            }
+            if(evenTail != null){
+                evenTail.next = null;
+            }
+        }
+        return oddHead;
     }
 }
 
@@ -216,7 +256,7 @@ public class LinkedListInterviewQuestions {
         d.next = e;
         e.next = f;
         ListNode.display(a);
-       System.out.println(ListNode.deleteMiddleElement(a));
+        System.out.println(ListNode.deleteMiddleElement(a));
         ListNode.display(a);
     }
 }

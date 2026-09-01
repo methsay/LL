@@ -250,6 +250,34 @@ class ListNode {
         }
         return head;
     }
+    static void reverse(ListNode head){
+        if(head == null){
+            return;
+        }
+        reverse(head);
+        System.out.print(head.data+ " ");
+    }
+    static ListNode reverseLL(ListNode head){
+        if(head.next == null){
+            return head;
+        }
+        ListNode newHead = reverseLL(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+    static ListNode iterativeReverse(ListNode head){
+        ListNode agla = null;
+        ListNode prev = null;
+        ListNode curr = head;
+        while(curr != null || prev != null){
+            agla = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = agla;
+        }
+        return prev;
+    }
 }
 
 public class LinkedListInterviewQuestions {

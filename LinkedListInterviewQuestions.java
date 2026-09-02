@@ -333,6 +333,27 @@ class ListNode {
         }
         return true;
     }
+    static int pairSum(ListNode head){
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        slow.next = reverseLL(slow.next);
+        int maxSum = 0;
+        ListNode head1 = slow.next;
+        ListNode head2 = head;
+        while(head1 != null){
+            int sum = head1.data + head2.data;
+            if(sum>maxSum){
+                maxSum = sum;
+            }
+            head1 = head1.next;
+            head2 = head2.next;
+        }
+        return maxSum;
+    }
 }
 
 public class LinkedListInterviewQuestions {

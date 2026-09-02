@@ -270,13 +270,43 @@ class ListNode {
         ListNode agla = null;
         ListNode prev = null;
         ListNode curr = head;
-        while(curr != null || prev != null){
+        while(curr != null){
             agla = curr.next;
             curr.next = prev;
             prev = curr;
             curr = agla;
         }
         return prev;
+    }
+    static boolean isPalindrome(ListNode head){
+        //step1 : pehle deep copy banao
+        ListNode copyHead = null;
+        ListNode copyTail = null;
+        ListNode temp = head;
+        while(temp != null){
+            ListNode newNode = new ListNode(temp.data);
+            if(copyHead == null){
+                copyHead = newNode;
+                copyTail = newNode;
+            }else{
+                copyTail.next = newNode;
+                copyTail = newNode;
+            }
+            temp = temp.next;
+        }
+        //step2 : aab iss copy ko reverse kardo
+        ListNode reversed = reverseLL(copyHead);
+        //step3 : aab original list aur reversed list ko compare karet raho
+        ListNode p = head;
+        ListNode q  = reversed;
+        while(p != null){
+            if(p.data != q.data){
+                return false;
+            }
+            p = p.next;
+            q = q.next;
+        }
+        return false;
     }
 }
 

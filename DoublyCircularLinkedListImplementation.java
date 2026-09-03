@@ -34,6 +34,22 @@ public class DoublyCircularLinkedListImplementation {
         }
         System.out.println();
     }
+    public static Node insertAtHead(Node head, int value){
+        Node temp = new Node(30);
+        temp.next = head;
+        head.prev = temp;
+        temp.prev = null;
+        head = temp;
+        return head;
+
+    }
+    public static Node insertAtTail(Node tail, int value){
+        Node temp = new Node(value);
+        tail.next = temp;
+        temp.prev = tail;
+        tail = temp;
+        return tail;
+    }
     public static void main(String[] args) {
         // 4 10 2 99 13
         Node a = new Node(4);
@@ -51,8 +67,12 @@ public class DoublyCircularLinkedListImplementation {
         d.next = e;
         e.prev = d;
         e.next = null;
-        // display(a);
+        display(a);
         // displayrev(e);
-        displayRandom(d);
+       // displayRandom(d);
+       //Node newHead = insertAtHead(a, 30);
+      // display(newHead);
+      Node newTail = insertAtTail(e, 50);
+      displayrev(newTail);
     }
 }

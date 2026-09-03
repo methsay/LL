@@ -7,6 +7,22 @@ public class DoublyCircularLinkedListImplementation {
             this.val = val;
         }
     }
+    public static void display(Node head){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.val + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+    public static void displayrev(Node tail){
+        Node temp = tail;
+        while(temp != null){
+            System.out.print(temp.val+" ");
+            temp = temp.prev;
+        }
+        System.out.println();
+    }
     public static void main(String[] args) {
         // 4 10 2 99 13
         Node a = new Node(4);
@@ -24,5 +40,7 @@ public class DoublyCircularLinkedListImplementation {
         d.next = e;
         e.prev = d;
         e.next = null;
+        display(a);
+        displayrev(e);
     }
 }

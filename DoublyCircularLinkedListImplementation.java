@@ -44,11 +44,26 @@ public class DoublyCircularLinkedListImplementation {
 
     }
     public static Node insertAtTail(Node tail, int value){
-        Node temp = new Node(value);
+        Node temp = new Node(value); //when tail node is given
         tail.next = temp;
         temp.prev = tail;
         tail = temp;
         return tail;
+    }
+    public static Node insertAtAnyIndex(Node head , int idx , int value){
+        Node t = head;
+        for(int i = 0; i < idx; i++){ // 0 based indexing
+            t = t.next;
+        }
+        Node temp = new Node(value);
+        Node after = t.next;
+        t.next = temp;
+        temp.prev = t;
+        temp.next = after;
+        if(after != null){
+            after.prev = temp;
+        }
+        return head;
     }
     public static void main(String[] args) {
         // 4 10 2 99 13
@@ -72,7 +87,10 @@ public class DoublyCircularLinkedListImplementation {
        // displayRandom(d);
        //Node newHead = insertAtHead(a, 30);
       // display(newHead);
-      Node newTail = insertAtTail(e, 50);
-      displayrev(newTail);
+    //   Node newTail = insertAtTail(e, 50);
+    //   displayrev(newTail);
+    // Node newList = insertAtAnyIndex(a, 2, 70);
+    insertAtAnyIndex(a, 1, 7);
+    display(a);
     }
 }

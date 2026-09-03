@@ -107,15 +107,41 @@ public class DoublyCircularLinkedListImplementation {
         return count;
     } 
     public static Node deleteCHead(Node head){
-        return head.next;
+        Node temp = head;
+        while(temp.next != head){
+            temp = temp.next;
+        }
+        temp.next = head.next;
+        head = head.next;
+        return head;
+    }
+    public static boolean palindromeDLL(Node head){
+        Node temp = head;
+        while(temp.next != null){
+            temp = temp.next;
+        }
+        Node t = temp;
+        Node h = head;
+        while(h != t){
+            if(h.val != t.val){
+                return false;
+            }
+            h = h.next;
+            t = t.prev;
+        }
+        return true;
     }
     public static void main(String[] args) {
         // 4 10 2 99 13
-        Node a = new Node(4);
-        Node b = new Node(10);
-        Node c = new Node(2);
-        Node d = new Node(99);
-        Node e = new Node(13);
+        // Node a = new Node(4);
+        // Node b = new Node(10);
+        // Node c = new Node(2);
+        // Node d = new Node(99);
+        // Node e = new Node(13);
+        Node a = new Node(1);
+        Node b = new Node(2);
+        Node c = new Node(3);
+        Node d = new Node(1);
         // a.prev = null;
         // a.next = b;
         // b.prev = a;
@@ -126,11 +152,19 @@ public class DoublyCircularLinkedListImplementation {
         // d.next = e;
         // e.prev = d;
         // e.next = null;
+        a.prev = null;
         a.next = b;
+        b.prev = a;
         b.next = c;
+        c.prev = b;
         c.next = d;
-        d.next = e;
-        e.next = a;
+        d.prev = c;
+        d.next = null;
+        // a.next = b;
+        // b.next = c;
+        // c.next = d;
+        // d.next = e;
+        // e.next = a;
         // display(a);
         // displayrev(e);
        // displayRandom(d);
@@ -147,9 +181,11 @@ public class DoublyCircularLinkedListImplementation {
     // display(deleteT);
     // Node deleteIdx = deleteAtAnyIndex(a,1);
     // display(deleteIdx);
-    displayCLL(a);
-    Node deleteCircularHead = deleteCHead(a);
-    displayCLL(deleteCircularHead);
+    // displayCLL(a);
+    // Node deleteCircularHead = deleteCHead(a);
+    // displayCLL(deleteCircularHead);
     // System.out.print("Length of the circular linked list = " + lengthC(a));
+    boolean ans = palindromeDLL(a);
+    System.out.println("Is the list Palindrome ? "+ans);
     }
 }

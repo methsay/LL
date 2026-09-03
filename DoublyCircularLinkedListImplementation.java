@@ -23,6 +23,17 @@ public class DoublyCircularLinkedListImplementation {
         }
         System.out.println();
     }
+    public static void displayRandom(Node random){
+        Node temp = random;
+        while(temp.prev != null){
+            temp = temp.prev;
+        }
+        while(temp != null){
+            System.out.print(temp.val+" ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
     public static void main(String[] args) {
         // 4 10 2 99 13
         Node a = new Node(4);
@@ -40,7 +51,8 @@ public class DoublyCircularLinkedListImplementation {
         d.next = e;
         e.prev = d;
         e.next = null;
-        display(a);
-        displayrev(e);
+        // display(a);
+        // displayrev(e);
+        displayRandom(d);
     }
 }

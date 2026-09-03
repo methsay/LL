@@ -3,5 +3,8 @@ public class DoublyCircularLinkedListImplementation {
         int val;
         Node next;
         Node prev;
+        Node(int val){ //constructor
+            this.val = val;
+        }
     }
 }

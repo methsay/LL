@@ -341,7 +341,7 @@ class ListNode {
             fast = fast.next.next;
         }
         slow.next = reverseLL(slow.next);
-        int maxSum = 0;
+        int maxSum = Integer.MIN_VALUE;
         ListNode head1 = slow.next;
         ListNode head2 = head;
         while(head1 != null){
@@ -353,6 +353,28 @@ class ListNode {
             head2 = head2.next;
         }
         return maxSum;
+    }
+    static ListNode oddEvenIndices(ListNode head){
+        ListNode odd = new ListNode(0);
+        ListNode even = new ListNode(0);
+        ListNode tempo = odd;
+        ListNode tempe = even;
+        ListNode temp = head;
+
+        while(temp != null){
+            tempo.next = temp;
+            temp = temp.next;
+            tempo = tempo.next;
+            if(temp == null){
+                break;
+            }
+            tempe.next = temp;
+            temp = temp.next;
+            tempe = tempe.next;
+        }
+        odd = odd.next;
+        even = even.next;
+        return odd;
     }
 }
 

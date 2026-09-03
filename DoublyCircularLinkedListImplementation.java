@@ -65,6 +65,50 @@ public class DoublyCircularLinkedListImplementation {
         }
         return head;
     }
+    public static Node deleteHead(Node head){
+        head = head.next;
+        head.prev = null;
+        return head;
+    }
+    public static Node deleteTail(Node head){
+        Node temp = head;
+        while(temp.next != null){
+            temp = temp.next;
+        }
+        temp = temp.prev;
+        temp.next = null;
+        return head;
+    }
+    public static Node deleteAtAnyIndex(Node head , int index){
+        Node temp = head;
+        for(int i = 0; i < index; i++){
+            temp = temp.next;
+        }
+        temp.prev.next = temp.next;
+        temp.next.prev = temp.prev;
+        return head;
+    }
+    public static void displayCLL(Node head){
+        int len = lengthC(head);
+        Node temp = head;
+        for(int i = 0; i < len; i++){
+            System.out.print(temp.val+" ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+    public static int lengthC(Node head){
+        Node temp = head.next;
+        int count = 1;
+        while(temp!= head){
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    } 
+    public static Node deleteCHead(Node head){
+        return head.next;
+    }
     public static void main(String[] args) {
         // 4 10 2 99 13
         Node a = new Node(4);
@@ -72,17 +116,22 @@ public class DoublyCircularLinkedListImplementation {
         Node c = new Node(2);
         Node d = new Node(99);
         Node e = new Node(13);
-        a.prev = null;
+        // a.prev = null;
+        // a.next = b;
+        // b.prev = a;
+        // b.next = c;
+        // c.prev = b;
+        // c.next = d;
+        // d.prev = c;
+        // d.next = e;
+        // e.prev = d;
+        // e.next = null;
         a.next = b;
-        b.prev = a;
         b.next = c;
-        c.prev = b;
         c.next = d;
-        d.prev = c;
         d.next = e;
-        e.prev = d;
-        e.next = null;
-        display(a);
+        e.next = a;
+        // display(a);
         // displayrev(e);
        // displayRandom(d);
        //Node newHead = insertAtHead(a, 30);
@@ -90,7 +139,17 @@ public class DoublyCircularLinkedListImplementation {
     //   Node newTail = insertAtTail(e, 50);
     //   displayrev(newTail);
     // Node newList = insertAtAnyIndex(a, 2, 70);
-    insertAtAnyIndex(a, 1, 7);
-    display(a);
+    // insertAtAnyIndex(a, 1, 7);
+    // display(a);
+    // Node deleteH = deleteHead(a);
+    // display(deleteH);
+    // Node deleteT = deleteTail(a);
+    // display(deleteT);
+    // Node deleteIdx = deleteAtAnyIndex(a,1);
+    // display(deleteIdx);
+    displayCLL(a);
+    Node deleteCircularHead = deleteCHead(a);
+    displayCLL(deleteCircularHead);
+    // System.out.print("Length of the circular linked list = " + lengthC(a));
     }
 }

@@ -131,6 +131,29 @@ public class DoublyCircularLinkedListImplementation {
         }
         return true;
     }
+    public static void twoSum(Node head , int target){ //assume that the list is in sorted order
+        Node temp = head;
+        while(temp.next != null){
+            temp = temp.next;
+        }
+        Node t = temp;
+        Node h = head;
+        while(h.val < t.val){
+            if(h.val + t.val == target){
+                System.out.print("Target found " + h.val + " and " + t.val);
+                return;
+            }
+            if(h.val + t.val < target){
+                h = h.next;
+            }
+            if(h.val + t.val > target){
+                t = t.prev;
+            }
+            else{
+                System.out.println("Target not found !!!");
+            }
+        }
+    }
     public static void main(String[] args) {
         // 4 10 2 99 13
         // Node a = new Node(4);
@@ -138,20 +161,22 @@ public class DoublyCircularLinkedListImplementation {
         // Node c = new Node(2);
         // Node d = new Node(99);
         // Node e = new Node(13);
-        Node a = new Node(1);
-        Node b = new Node(2);
-        Node c = new Node(3);
-        Node d = new Node(1);
-        // a.prev = null;
-        // a.next = b;
-        // b.prev = a;
-        // b.next = c;
-        // c.prev = b;
-        // c.next = d;
-        // d.prev = c;
-        // d.next = e;
-        // e.prev = d;
-        // e.next = null;
+        
+        //Two Sum
+        Node a = new Node(3);
+        Node b = new Node(5);
+        Node c = new Node(8);
+        Node d = new Node(13);
+        Node e = new Node(100);
+
+
+        //Palindrome
+        // Node a = new Node(1);
+        // Node b = new Node(2);
+        // Node c = new Node(3);
+        // Node d = new Node(1);
+        
+        //Doubly Linked List
         a.prev = null;
         a.next = b;
         b.prev = a;
@@ -159,7 +184,20 @@ public class DoublyCircularLinkedListImplementation {
         c.prev = b;
         c.next = d;
         d.prev = c;
-        d.next = null;
+        d.next = e;
+        e.prev = d;
+        e.next = null;
+
+        //Palindrome
+        // a.prev = null;
+        // a.next = b;
+        // b.prev = a;
+        // b.next = c;
+        // c.prev = b;
+        // c.next = d;
+        // d.prev = c;
+        // d.next = null;
+
         // a.next = b;
         // b.next = c;
         // c.next = d;
@@ -185,7 +223,8 @@ public class DoublyCircularLinkedListImplementation {
     // Node deleteCircularHead = deleteCHead(a);
     // displayCLL(deleteCircularHead);
     // System.out.print("Length of the circular linked list = " + lengthC(a));
-    boolean ans = palindromeDLL(a);
-    System.out.println("Is the list Palindrome ? "+ans);
+    // boolean ans = palindromeDLL(a);
+    // System.out.println("Is the list Palindrome ? "+ans);
+    twoSum(a, 16);
     }
 }
